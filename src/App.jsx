@@ -1,15 +1,16 @@
 /** @format */
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 import Header from './components/Header';
 import Item from './components/Item';
 import Form from './components/Form';
+import {useApp} from "./AppProvider";
 
 import { Container } from '@mui/material';
 
 export default function App() {
-    const inputRef = useRef();
+    const { showForm } = useApp();
 
     const [posts, setPosts] = useState([
         { id: 3, content: 'Some Content', user: 'Alice' },
@@ -34,7 +35,7 @@ export default function App() {
                 sx={{ mt: 4 }}
                 maxWidth='md'>
                
-                <Form add={add}/>
+                { showForm && <Form add={add}/>}
 
                 {posts.map((post) => (
                     <Item
