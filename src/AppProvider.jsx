@@ -1,8 +1,17 @@
 /** @format */
 
-import { createContext, useContext, useState, useMemo } from 'react';
+import {
+    createContext,
+    useContext,
+    useState,
+    useMemo,
+} from 'react';
 
-import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import {
+    createTheme,
+    ThemeProvider,
+    CssBaseline,
+} from '@mui/material';
 
 import App from './App';
 const AppContext = createContext();
@@ -26,7 +35,17 @@ export default function AppProvider() {
     }, [mode]);
 
     return (
-        <AppContext.Provider value={{ showForm, setShowForm, mode, setMode,showDrawer, setShowDrawer,auth, setAuth }}>
+        <AppContext.Provider
+            value={{
+                showForm,
+                setShowForm,
+                mode,
+                setMode,
+                showDrawer,
+                setShowDrawer,
+                auth,
+                setAuth,
+            }}>
             <ThemeProvider theme={theme}>
                 <App />
                 <CssBaseline />

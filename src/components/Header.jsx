@@ -1,6 +1,12 @@
 /** @format */
 
-import { Box, AppBar, Toolbar, Typography, IconButton } from '@mui/material';
+import {
+    Box,
+    AppBar,
+    Toolbar,
+    Typography,
+    IconButton,
+} from '@mui/material';
 
 import {
     Add as AddIcon,
@@ -11,12 +17,19 @@ import {
 
 import { useApp } from '../AppProvider';
 export default function Header() {
-    const { showForm, setShowForm, mode, setMode, setShowDrawer } = useApp();
+    const { showForm,
+        setShowForm,
+        mode,
+        setMode,
+        setShowDrawer,
+    } = useApp();
     return (
         <AppBar position='static'>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                    <IconButton onClick={() => setShowDrawer(true)}>
+                    <IconButton
+                        color='inherit'
+                        onClick={() => setShowDrawer(true)}>
                         <MenuIcon />
                     </IconButton>
                     <Typography>App</Typography>

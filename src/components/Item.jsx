@@ -17,7 +17,12 @@ export default function Item({ post, remove }) {
     return (
         <Card sx={{ mb: 3 }}>
             <CardContent>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'flex-start',
+                    }}>
                     <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
                         <Avatar
                             sx={{
@@ -26,11 +31,11 @@ export default function Item({ post, remove }) {
                                 background: blue[500],
                             }}
                         />
-                           <Typography sx={{ fontWeight: 'bold' }}>
-                        {post.user}
-                    </Typography>
+                        <Typography sx={{ fontWeight: 'bold' }}>
+                            {post.user}
+                        </Typography>
                     </Box>
-                 
+
                     <IconButton
                         size='small'
                         onClick={() => remove(post.id)}>
