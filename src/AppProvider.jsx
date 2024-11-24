@@ -14,6 +14,7 @@ export function useApp() {
 export default function AppProvider() {
     const [showForm, setShowForm] = useState(false);
     const [showDrawer, setShowDrawer] = useState(false);
+    const [auth, setAuth] = useState(false);
     const [mode, setMode] = useState('dark');
 
     const theme = useMemo(() => {
@@ -25,7 +26,7 @@ export default function AppProvider() {
     }, [mode]);
 
     return (
-        <AppContext.Provider value={{ showForm, setShowForm, mode, setMode,showDrawer, setShowDrawer }}>
+        <AppContext.Provider value={{ showForm, setShowForm, mode, setMode,showDrawer, setShowDrawer,auth, setAuth }}>
             <ThemeProvider theme={theme}>
                 <App />
                 <CssBaseline />
