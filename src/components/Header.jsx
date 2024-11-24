@@ -1,35 +1,49 @@
 /** @format */
 
-import { Box,AppBar, Toolbar, Typography, IconButton, } from '@mui/material';
+import { Box, AppBar, Toolbar, Typography, IconButton } from '@mui/material';
 
-import { Add as AddIcon, LightMode as LightModeIcon, DarkMode as DarkModeIcon,} from '@mui/icons-material';
+import {
+    Add as AddIcon,
+    Menu as MenuIcon,
+    LightMode as LightModeIcon,
+    DarkMode as DarkModeIcon,
+} from '@mui/icons-material';
 
 import { useApp } from '../AppProvider';
 export default function Header() {
-    const { showForm, setShowForm, mode, setMode } = useApp();
+    const { showForm, setShowForm, mode, setMode, setShowDrawer } = useApp();
     return (
         <AppBar position='static'>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Typography>App</Typography>
-                <Box sx={{display: "flex", gap: 1}}>
-                <IconButton
-                    color='inherit'
-                    onClick={() => setShowForm(!showForm)}>
-                    <AddIcon />
-                </IconButton>
-                {mode == "dark" ? (
-                    <IconButton color='inherit' onClick={() => {
-                        setMode("light");
-                    }}>
-                        <LightModeIcon/>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                    <IconButton onClick={() => setShowDrawer(true)}>
+                        <MenuIcon />
                     </IconButton>
-                ) : (
-                    <IconButton color='inherit' onClick={() => {
-                        setMode("dark");
-                    }}>
-                        <DarkModeIcon/>
+                    <Typography>App</Typography>
+                </Box>
+                <Box sx={{ display: 'flex', gap: 1 }}>
+                    <IconButton
+                        color='inherit'
+                        onClick={() => setShowForm(!showForm)}>
+                        <AddIcon />
                     </IconButton>
-                )}
+                    {mode == 'dark' ? (
+                        <IconButton
+                            color='inherit'
+                            onClick={() => {
+                                setMode('light');
+                            }}>
+                            <LightModeIcon />
+                        </IconButton>
+                    ) : (
+                        <IconButton
+                            color='inherit'
+                            onClick={() => {
+                                setMode('dark');
+                            }}>
+                            <DarkModeIcon />
+                        </IconButton>
+                    )}
                 </Box>
             </Toolbar>
         </AppBar>
