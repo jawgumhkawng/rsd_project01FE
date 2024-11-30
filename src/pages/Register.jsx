@@ -18,12 +18,12 @@ export default function Login() {
 
     const submitLogin = () => {
         setAuth(true);
-        navigate('/');
+        navigate('/Login');
     };
 
     return (
         <Box>
-            <Typography variant='h3'>Login</Typography>
+            <Typography variant='h3'>Register</Typography>
             <form onSubmit={handleSubmit(submitLogin)}>
                 <OutlinedInput
                     {...register('username', { required: true })}
@@ -34,6 +34,23 @@ export default function Login() {
                 {errors.username && (
                     <Typography color='error'>username is required!</Typography>
                 )}
+                <OutlinedInput
+                    {...register('email', { required: true })}
+                    fullWidth
+                    placeholder='email'
+                    type='email'
+                    sx={{ mt: 2 }}
+                />
+                {errors.email && (
+                    <Typography color='error'>email is required!</Typography>
+                )}
+                <OutlinedInput
+                    {...register('bio', { required: true })}
+                    fullWidth
+                    placeholder='bio'
+                    sx={{ mt: 2 }}
+                />
+
                 <OutlinedInput
                     {...register('password', { required: true })}
                     fullWidth
