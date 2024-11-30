@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import App from "./App";
-import Home from "./components/pages/Home";
-import Login from "./components/pages/Login";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 export default function AppRouter() {
     return <BrowserRouter>
