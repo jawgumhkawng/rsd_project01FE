@@ -13,7 +13,7 @@ import {
     CssBaseline,
 } from '@mui/material';
 
-import App from './App';
+import AppRouter from './AppRouter';
 const AppContext = createContext();
 
 export function useApp() {
@@ -47,7 +47,7 @@ export default function AppProvider() {
                 setAuth,
             }}>
             <ThemeProvider theme={theme}>
-                <App />
+                <AppRouter/>
                 <CssBaseline />
             </ThemeProvider>
         </AppContext.Provider>

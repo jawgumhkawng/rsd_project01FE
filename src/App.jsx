@@ -9,6 +9,7 @@ import AppDrawer from './components/AppDrawer';
 import {useApp} from "./AppProvider";
 
 import { Container } from '@mui/material';
+import { Outlet } from 'react-router';
 
 export default function App() {
     const { showForm } = useApp();
@@ -36,16 +37,9 @@ export default function App() {
             <Container
                 sx={{ mt: 4 }}
                 maxWidth='md'>
-               
-                { showForm && <Form add={add}/>}
+                     
 
-                {posts.map((post) => (
-                    <Item
-                        key={post.id}
-                        post={post}
-                        remove={remove}
-                    />
-                ))}
+                <Outlet />
             </Container>
         </div>
     );

@@ -21,9 +21,11 @@ import {
 
 import { grey } from '@mui/material/colors';
 import { useApp } from '../AppProvider';
+import { useNavigate } from 'react-router';
 
 export default function TemporaryDrawer() {
     const { showDrawer, setShowDrawer, auth, setAuth } = useApp();
+    const navigate = useNavigate();
 
     const toggleDrawer = (newOpen) => () => {
         setShowDrawer(newOpen);
@@ -38,7 +40,7 @@ export default function TemporaryDrawer() {
             <Divider />
             <List>
               <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={() => navigate("/")}>
                     <ListItemIcon>
                         <HomeIcon/>
                     </ListItemIcon>
@@ -51,7 +53,7 @@ export default function TemporaryDrawer() {
             { auth && (
                 <List>
                 <ListItem disablePadding>
-                  <ListItemButton>
+                  <ListItemButton onClick={() => navigate("/profile")}>
                       <ListItemIcon>            
                           <ProfileIcon/>
                       </ListItemIcon>
@@ -72,7 +74,7 @@ export default function TemporaryDrawer() {
             { !auth && (
                 <List>
                 <ListItem disablePadding>
-                  <ListItemButton>
+                  <ListItemButton onClick={() => navigate("/register")}>
                       <ListItemIcon>
                           <RegisterIcon/>
                       </ListItemIcon>
@@ -80,7 +82,7 @@ export default function TemporaryDrawer() {
                   </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
-                  <ListItemButton onClick={() => setAuth(true)}>
+                  <ListItemButton onClick={() => navigate("/Login")}>
                       <ListItemIcon>
                           <LoginIcon/>
                       </ListItemIcon>
