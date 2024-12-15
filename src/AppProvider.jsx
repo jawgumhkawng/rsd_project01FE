@@ -13,8 +13,12 @@ import {
     CssBaseline,
 } from '@mui/material';
 
+import { QueryClientProvider, QueryClient } from "react-query";
+
 import AppRouter from './AppRouter';
 const AppContext = createContext();
+
+const queryClient = new QueryClient();
 
 export function useApp() {
     return useContext(AppContext);
@@ -46,10 +50,16 @@ export default function AppProvider() {
                 auth,
                 setAuth,
             }}>
-            <ThemeProvider theme={theme}>
+            {/* <ThemeProvider theme={theme}>
                 <AppRouter/>
                 <CssBaseline />
-            </ThemeProvider>
+            </ThemeProvider> */}
+            <QueryClientProvider client={queryClient}>
+				<ThemeProvider theme={theme}>
+					<AppRouter />
+					<CssBaseline />
+				</ThemeProvider>
+			</QueryClientProvider>
         </AppContext.Provider>
     );
 }

@@ -31,8 +31,8 @@ export default function Item({ post, remove }) {
                                 background: blue[500],
                             }}
                         />
-                        <Typography sx={{ fontWeight: 'bold' }}>
-                            {post.user}
+                        <Typography sx={{ fontWeight: 'bold' }}>                           
+                            {post.user.name}
                         </Typography>
                     </Box>
 
