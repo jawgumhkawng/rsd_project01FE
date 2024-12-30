@@ -13,12 +13,15 @@ import { useMutation, useQueryClient } from "react-query";
 
 async function postPost(content) {
 	const api = "http://localhost:8000/posts";
+	const token = localStorage.getItem("token");
 	const res = await fetch(api, {
 		method: "POST",
 		body: JSON.stringify({ content }),
 		headers: {
-			"Content-Type": "application/json",
-		},
+				'Authorization': `Bearer ${token}`,
+				'Content-Type': 'application/json',
+			}
+		
 	});
 
 	return res.json();
@@ -49,6 +52,7 @@ export default function Form() {
 				e.currentTarget.reset();
 			}}>
 			<OutlinedInput
+			
 				type="text"
 				style={{ flexGrow: 1 }}
 				inputRef={inputRef}

@@ -20,7 +20,9 @@ import { useApp } from '../AppProvider';
 import { useLocation, useNavigate } from 'react-router';
 // import { } from "react-router";
 export default function Header() {
-    const { showForm,
+    const {
+        auth,
+        showForm,
         setShowForm,
         mode,
         setMode,
@@ -49,11 +51,13 @@ export default function Header() {
                     <Typography>App</Typography>
                 </Box>
                 <Box sx={{ display: 'flex', gap: 1 }}>
-                    <IconButton
+                    {auth && (
+                         <IconButton
                         color='inherit'
                         onClick={() => setShowForm(!showForm)}>
                         <AddIcon />
                     </IconButton>
+                   )}
                     {mode == 'dark' ? (
                         <IconButton
                             color='inherit'

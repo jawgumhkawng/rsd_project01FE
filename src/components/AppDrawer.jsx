@@ -9,6 +9,7 @@ import {
     ListItemIcon,
     ListItemText,
     Divider,
+    Avatar,
 } from '@mui/material';
 
 import {
@@ -19,7 +20,7 @@ import {
     Logout as LogoutIcon,
 } from '@mui/icons-material';
 
-import { grey } from '@mui/material/colors';
+import { green } from '@mui/material/colors';
 import { useApp } from '../AppProvider';
 import { useNavigate } from 'react-router';
 
@@ -27,7 +28,7 @@ export default function TemporaryDrawer() {
     const { showDrawer, setShowDrawer, auth, setAuth } = useApp();
     const navigate = useNavigate();
 
-    const toggleDrawer = (newOpen) => () => {
+    const toggleDrawer = newOpen => () => {
         setShowDrawer(newOpen);
     };
 
@@ -36,7 +37,15 @@ export default function TemporaryDrawer() {
             sx={{ width: 300 }}
             role='presentation'
             onClick={toggleDrawer(false)}>
-            <Box sx={{ height: 200 }}></Box>
+            <Box sx={{ height: 200, padding: 2, display: "flex", alignItems: "flex-end" }}>
+                {auth && (
+                    <>
+                        <Avatar sx={{ width: 128, height: 128, background: green[500] }}>
+                            { auth.name[0]}
+                        </Avatar>
+                    </>
+                )}
+            </Box>
             <Divider />
             <List>
               <ListItem disablePadding>
@@ -61,7 +70,9 @@ export default function TemporaryDrawer() {
                   </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
-                  <ListItemButton onClick={() => setAuth(false)}>
+                        <ListItemButton onClick={() => {setAuth(false);
+                            localStorage.removeItem('token')
+                        }}>
                       <ListItemIcon>
                           <LogoutIcon/>
                       </ListItemIcon>

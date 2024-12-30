@@ -7,13 +7,24 @@ import {
     IconButton,
     Typography,
     Avatar,
+    ButtonGroup,
+    Button
+
 } from '@mui/material';
 
 import { Delete as DeleteIcon } from '@mui/icons-material';
 
+import { useApp } from '../AppProvider';
 import { blue } from '@mui/material/colors';
-// import { red } from '@mui/material/colors';
+import {
+    FavoriteBorderOutlined as LikeIcon,
+    Favorite as LikedIcon,
+    ChatBubbleOutline as CommentIcon,
+} from '@mui/icons-material';
+ 
 export default function Item({ post, remove }) {
+    const { auth } = useApp();
+
     return (
         <Card sx={{ mb: 3 }}>
             <CardContent>
@@ -36,14 +47,51 @@ export default function Item({ post, remove }) {
                         </Typography>
                     </Box>
 
-                    <IconButton
-                        size='small'
-                        onClick={() => remove(post.id)}>
-                        <DeleteIcon sx={{ fontSize: 24 }} />
-                    </IconButton>
+                   { auth && auth.id === post.user.id && (
+                        <IconButton
+                            size="small"
+                            onClick = {() => remove(post.id)}>
+                            <DeleteIcon color="error" sx={{ fontSize: 24 }} />
+                        </IconButton>
+                    )}
                 </Box>
 
                 <Typography>{post.content}</Typography>
+
+                <Box
+                    sx={{
+                        display: 'flex',
+                        gap: 2,
+                        justifyContent: 'flex-end',
+                        mt: 2,
+                }}>
+                    <ButtonGroup>
+                        <IconButton size='small'>
+                            <LikeIcon
+                            color="error"
+                                sx={{ fontSize: 21 }}
+                            />
+                        </IconButton>
+                        <Button
+							variant="text"
+							size="small">
+							8
+						</Button>
+                    </ButtonGroup>
+                     <ButtonGroup>
+                        <IconButton size='small'>
+                            <CommentIcon
+                            color="success"
+                                sx={{ fontSize: 21 }}
+                            />
+                        </IconButton>
+                        <Button
+							variant="text"
+							size="small">
+							5
+						</Button>
+                    </ButtonGroup>
+                </Box>
             </CardContent>
         </Card>
     );
